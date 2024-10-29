@@ -32,7 +32,7 @@ function App() {
         return;
       }
     }
-    if (box.every((item) => item !== null) && !winner) {
+    if (newBox.every((item) => item !== null) && !winner) {
       setDraw(true);
     }
   };
@@ -43,33 +43,38 @@ function App() {
     setDraw(false);
   };
   return (
-    <div className='h-screen flex justify-center items-center'>
-      <div className='flex flex-wrap gap-4 w-80 mx-auto'>
+    <div className='h-screen flex flex-col justify-center items-center gap-10'>
+      <h1 className='text-4xl font-bold text-white'>Tic Tac Toe</h1>
+      <div className='flex flex-wrap justify-center items-center gap-4 w-80 mx-auto'>
         {box.map((value, i) => {
           return (
             <button
-              className='w-20 h-20 text-2xl font-bold bg-[#c4fcef] rounded-lg'
+              className='w-20 h-20 text-3xl font-bold bg-[#c4fcef] rounded-lg'
               key={i}
               onClick={() => handleClick(i)}
             >
-              <p className='text-[#845ec2]'>{value}</p>
+              <p className='text-[#4b4453]'>{value}</p>
             </button>
           );
         })}
         {winner || draw ? (
-          <div className='text-center mt-4'>
-            <p className='text-2xl font-semibold'>
+          <div className='text-center mt-4 flex flex-col justify-center items-center'>
+            <p
+              className={`${winner && "text-white"} ${
+                draw && "text-gray-300"
+              } text-3xl font-semibold mb-5`}
+            >
               {draw ? "Draw No Winner" : `Winner: ${winner}`}
             </p>
             <button
               onClick={resetGame}
-              className='mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg'
+              className='relative inline-block h-14 w-32 text-xl text-white duration-300 before:absolute before:inset-0 before:-z-10 before:block before:bg-sky-400 before:duration-500 after:absolute after:inset-0 after:-z-10 after:block after:bg-sky-700 after:duration-500 hover:before:skew-y-12 hover:after:-skew-y-12'
             >
               Play Again
             </button>
           </div>
         ) : (
-          <p className='text-center mt-4 text-xl'>{`Next Player: ${
+          <p className='text-white font-bold text-center mt-4 text-2xl'>{`Next Player: ${
             terms ? "X" : "O"
           }`}</p>
         )}
