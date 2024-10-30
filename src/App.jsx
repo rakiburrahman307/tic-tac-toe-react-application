@@ -19,7 +19,7 @@ function App() {
   const handleClick = (index) => {
     if (box[index] || winner) return;
     const newBox = box.slice();
-    newBox[index] = terms ? "X" : "Y";
+    newBox[index] = terms ? "X" : "O";
     setBox(newBox);
     setTerms(!terms);
     checkWinner(newBox);
